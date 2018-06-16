@@ -1,5 +1,5 @@
 const app = function(){
-  const url = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
+  const url = "http://hp-api.herokuapp.com/api/characters/students";
   makeRequest(url, requestComplete);
 }
 
@@ -11,6 +11,23 @@ const makeRequest = function(url, callback){
 
 }
 
+const requestComplete = function(){
+  if(this.status !== 200) return;
+  const students = JSON.parse(this.response);
+  populateDropdown(students)
+};
 
 
-window.addEventListener(load, app);
+const populateDropdown = function(students){
+  const dropdown = document.querySelector('#students');
+  students.forEach(function(student){
+    const option = document.createElement('option');
+    option.value = students.indexOf(student);
+    option.textContent = student.name;
+    dropdown.appendChild(option);
+    });
+
+}
+
+
+window.addEventListener('load', app);
