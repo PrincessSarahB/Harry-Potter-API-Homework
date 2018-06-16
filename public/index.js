@@ -15,6 +15,11 @@ const requestComplete = function(){
   if(this.status !== 200) return;
   const students = JSON.parse(this.response);
   populateDropdown(students)
+  const select = document.querySelector('select');
+select.addEventListener('change', function(){
+  var student = students[select.value];
+  handleSelectChange(student)
+});
 };
 
 
@@ -26,6 +31,29 @@ const populateDropdown = function(students){
     option.textContent = student.name;
     dropdown.appendChild(option);
     });
+
+}
+
+const handleSelectChange = function(student){
+  const ul = document.querySelector('#selected-student');
+  const nameLi = document.querySelector('#nameLi');
+  nameLi.textContent = "Name: " + student.name;
+  const houseLi = document.querySelector('#houseLi');
+  houseLi.textContent = "House: " + student.house;
+  const ancestryLi = document.querySelector('#ancestryLi');
+  ancestryLi.textContent = "Ancestry: " + student.ancestry;
+  const patronusLi = document.querySelector('#patronusLi');
+  if(student.patronus !== ""){
+  patronusLi.textContent = "Patronus: " + student.patronus;
+} else {
+  patronusLi.textContent = "Patronus: Unknown";
+};
+
+
+  ul.appendChild(nameLi)
+  ul.appendChild(houseLi)
+  ul.appendChild(ancestryLi);
+  ul.appendChild(patronusLi);
 
 }
 
