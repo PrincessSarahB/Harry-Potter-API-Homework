@@ -36,6 +36,9 @@ const populateDropdown = function(students){
 
 const handleSelectChange = function(student){
   const ul = document.querySelector('#selected-student');
+  const img = document.querySelector('#img')
+  img.src = student.image;
+  img.height = 400;
   const nameLi = document.querySelector('#nameLi');
   nameLi.textContent = "Name: " + student.name;
   const houseLi = document.querySelector('#houseLi');
