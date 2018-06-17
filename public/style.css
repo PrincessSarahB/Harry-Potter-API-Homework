@@ -1,5 +1,7 @@
 h1 {
   font-family: 'Fontdiner Swanky', cursive;
+  text-align: center;
+  font-size: 70px;
 }
 
 ul {
@@ -9,6 +11,7 @@ ul {
 body {
   font-family: 'Quicksand', sans-serif;
   list-style: none;
+
 
 }
 
@@ -35,4 +38,32 @@ body.Ravenclaw{
 .dropdown{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+
+}
+
+.pick {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+#crest{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+#img{
+  padding-top: 10px;
+  display: inline-block;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.info{
+
+  display: inline-block;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: 10px;
 }

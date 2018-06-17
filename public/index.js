@@ -81,6 +81,7 @@ const handleSelectChange = function(listId, character){
   ul.appendChild(houseLi)
   ul.appendChild(ancestryLi);
   ul.appendChild(patronusLi);
+  ul.appendChild(img);
 
 }
 
