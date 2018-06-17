@@ -20,7 +20,7 @@ const secondRequestComplete = function(){
   const selectStaff = document.querySelector('#staff');
   selectStaff.addEventListener('change', function(){
     var staffMember = staff[selectStaff.value];
-    handleSelectChangeStaff(staffMember);
+    handleSelectChange('#selected-staffMember',staffMember);
   });
 
 }
@@ -31,7 +31,7 @@ const requestComplete = function(){
   const select = document.querySelector('#students');
 select.addEventListener('change', function(){
   var student = students[select.value];
-  handleSelectChangeStudent(student)
+  handleSelectChange('#selected-student', student)
 });
   addImage();
 };
@@ -63,26 +63,26 @@ const populateDropdownStaff = function(staff){
 
 }
 
-const handleSelectChangeStudent = function(student){
-  const ul = document.querySelector('#selected-student');
+const handleSelectChange = function(listId, character){
+  const ul = document.querySelector(listId);
   const body = document.getElementsByTagName('body')[0];
-  body.setAttribute("class", student.house);
+  body.setAttribute("class", character.house);
   const img = document.querySelector('#img')
-  img.src = student.image;
+  img.src = character.image;
   img.height = 400;
   const nameLi = document.querySelector('#nameLi');
-  nameLi.textContent = "Name: " + student.name;
+  nameLi.textContent = "Name: " + character.name;
   const houseLi = document.querySelector('#houseLi');
-  houseLi.textContent = "House: " + student.house;
+  houseLi.textContent = "House: " + character.house;
   const ancestryLi = document.querySelector('#ancestryLi');
-  if(student.ancestry !== ""){
-  ancestryLi.textContent = "Ancestry: " + student.ancestry;}
+  if(character.ancestry !== ""){
+  ancestryLi.textContent = "Ancestry: " + character.ancestry;}
   else {
    ancestryLi.textContent = "Ancestry: Unknown";
   }
   const patronusLi = document.querySelector('#patronusLi');
-  if(student.patronus !== ""){
-  patronusLi.textContent = "Patronus: " + student.patronus;
+  if(character.patronus !== ""){
+  patronusLi.textContent = "Patronus: " + character.patronus;
 } else {
   patronusLi.textContent = "Patronus: Unknown";
 };
@@ -95,36 +95,5 @@ const handleSelectChangeStudent = function(student){
 
 }
 
-const handleSelectChangeStaff = function(staffMember){
-  const ul = document.querySelector('#selected-staffMember');
-  const body = document.getElementsByTagName('body')[0];
-  body.setAttribute("class", staffMember.house);
-  const img = document.querySelector('#img')
-  img.src = staffMember.image;
-  img.height = 400;
-  const nameLi = document.querySelector('#nameLi');
-  nameLi.textContent = "Name: " + staffMember.name;
-  const houseLi = document.querySelector('#houseLi');
-  houseLi.textContent = "House: " + staffMember.house;
-  const ancestryLi = document.querySelector('#ancestryLi');
-  if(staffMember.ancestry !== ""){
-  ancestryLi.textContent = "Ancestry: " + staffMember.ancestry;}
-  else {
-   ancestryLi.textContent = "Ancestry: Unknown";
-  }
-  const patronusLi = document.querySelector('#patronusLi');
-  if(staffMember.patronus !== ""){
-  patronusLi.textContent = "Patronus: " + staffMember.patronus;
-} else {
-  patronusLi.textContent = "Patronus: Unknown";
-};
-
-
-  ul.appendChild(nameLi)
-  ul.appendChild(houseLi)
-  ul.appendChild(ancestryLi);
-  ul.appendChild(patronusLi);
-
-}
 
 window.addEventListener('load', app);
