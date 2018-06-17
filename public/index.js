@@ -79,13 +79,19 @@ const reset = function(listId){
 
 }
 
-const handleSelectChange = function(listId, character){
+const setCharacterPic = function(character){
   const img = document.querySelector('#img')
   img.src = character.image;
   img.height = 400;
-  const ul = document.querySelector(listId);
+}
+
+const changeBackgroundColour = function(character){
   const body = document.getElementsByTagName('body')[0];
   body.setAttribute("class", character.house);
+}
+
+const createInfoList = function(listId, character){
+  const ul = document.querySelector(listId);
   const nameLi = document.querySelector('#nameLi');
   nameLi.textContent = "Name: " + character.name;
   const houseLi = document.querySelector('#houseLi');
@@ -102,12 +108,16 @@ const handleSelectChange = function(listId, character){
     } else {
       patronusLi.textContent = "Patronus: Unknown";
     };
-
-
     ul.appendChild(nameLi)
     ul.appendChild(houseLi)
     ul.appendChild(ancestryLi);
     ul.appendChild(patronusLi);
+}
+
+const handleSelectChange = function(listId, character){
+  setCharacterPic(character);
+  changeBackgroundColour(character);
+  createInfoList(listId, character);
 
   }
 
