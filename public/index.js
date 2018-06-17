@@ -16,7 +16,7 @@ const makeRequest = function(url, callback){
 const secondRequestComplete = function(){
   if(this.status !== 200) return;
   const staff = JSON.parse(this.response);
-  populateDropdownStaff(staff)
+  populateDropdown('#staff', staff)
   const selectStaff = document.querySelector('#staff');
   selectStaff.addEventListener('change', function(){
     var staffMember = staff[selectStaff.value];
@@ -27,7 +27,7 @@ const secondRequestComplete = function(){
 const requestComplete = function(){
   if(this.status !== 200) return;
   const students = JSON.parse(this.response);
-  populateDropdownStudent(students)
+  populateDropdown('#students', students)
   const select = document.querySelector('#students');
 select.addEventListener('change', function(){
   var student = students[select.value];
@@ -41,23 +41,12 @@ const addImage = function(){
   crest.src = "https://vignette.wikia.nocookie.net/harrypotter/images/6/6d/Hogwarts_crest.jpg/revision/latest?cb=20080209002605"
 }
 
-const populateDropdownStudent = function(students){
-  const dropdown = document.querySelector('#students');
-  students.forEach(function(student){
+const populateDropdown = function(tagId, characters){
+  const dropdown = document.querySelector(tagId);
+  characters.forEach(function(character){
     const option = document.createElement('option');
-    option.value = students.indexOf(student);
-    option.textContent = student.name;
-    dropdown.appendChild(option);
-    });
-
-}
-
-const populateDropdownStaff = function(staff){
-  const dropdown = document.querySelector('#staff');
-  staff.forEach(function(member){
-    const option = document.createElement('option');
-    option.value = staff.indexOf(member);
-    option.textContent = member.name;
+    option.value = characters.indexOf(character);
+    option.textContent = character.name;
     dropdown.appendChild(option);
     });
 
