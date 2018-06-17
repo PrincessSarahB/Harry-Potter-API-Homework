@@ -8,4 +8,25 @@ ul {
 
 body {
   font-family: 'Quicksand', sans-serif;
+
+}
+
+body.Slytherin{
+  background-color: green;
+  color: silver;
+}
+
+body.Gryffindor{
+  background-color: red;
+  color: gold;
+}
+
+body.Hufflepuff{
+  background-color: yellow;
+  color: black;
+}
+
+body.Ravenclaw{
+  background-color: blue;
+  color: darkgoldenrod;
 }
