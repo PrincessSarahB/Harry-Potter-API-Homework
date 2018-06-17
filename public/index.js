@@ -53,12 +53,12 @@ const populateDropdown = function(tagId, characters){
 }
 
 const handleSelectChange = function(listId, character){
-  const ul = document.querySelector(listId);
-  const body = document.getElementsByTagName('body')[0];
-  body.setAttribute("class", character.house);
   const img = document.querySelector('#img')
   img.src = character.image;
   img.height = 400;
+  const ul = document.querySelector(listId);
+  const body = document.getElementsByTagName('body')[0];
+  body.setAttribute("class", character.house);
   const nameLi = document.querySelector('#nameLi');
   nameLi.textContent = "Name: " + character.name;
   const houseLi = document.querySelector('#houseLi');
@@ -81,7 +81,6 @@ const handleSelectChange = function(listId, character){
   ul.appendChild(houseLi)
   ul.appendChild(ancestryLi);
   ul.appendChild(patronusLi);
-  ul.appendChild(img);
 
 }
 
