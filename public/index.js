@@ -20,19 +20,26 @@ const secondRequestComplete = function(){
   const selectStaff = document.querySelector('#staff');
   selectStaff.addEventListener('change', function(){
     var staffMember = staff[selectStaff.value];
-    handleSelectChange('#selected-staffMember',staffMember);
+    if(selectStaff.value === ""){
+      reset('#staff');
+    } else {
+      handleSelectChange('#selected',staffMember);
+    }
   });
-
 }
 const requestComplete = function(){
   if(this.status !== 200) return;
   const students = JSON.parse(this.response);
   populateDropdown('#students', students)
   const select = document.querySelector('#students');
-select.addEventListener('change', function(){
-  var student = students[select.value];
-  handleSelectChange('#selected-student', student)
-});
+  select.addEventListener('change', function(){
+    var student = students[select.value];
+    if(select.value === ""){
+      reset('#students');
+    } else {
+    handleSelectChange('#selected', student)
+  }
+  });
   addImage();
 };
 
@@ -43,12 +50,32 @@ const addImage = function(){
 
 const populateDropdown = function(tagId, characters){
   const dropdown = document.querySelector(tagId);
+  const selectOption = document.createElement('option');
+  selectOption.value = ""
+  dropdown.appendChild(selectOption);
   characters.forEach(function(character){
     const option = document.createElement('option');
     option.value = characters.indexOf(character);
     option.textContent = character.name;
     dropdown.appendChild(option);
-    });
+  });
+
+}
+
+const reset = function(listId){
+  const img = document.querySelector('#img')
+  img.src = ""
+  const ul = document.querySelector(listId);
+  const nameLi = document.querySelector('#nameLi');
+  nameLi.textContent = "";
+  const houseLi = document.querySelector('#houseLi');
+  houseLi.textContent = "";
+  const ancestryLi = document.querySelector('#ancestryLi');
+  ancestryLi.textContent = "";
+  const patronusLi = document.querySelector('#patronusLi');
+  patronusLi.textContent = "";
+  const body = document.getElementsByTagName('body')[0];
+  body.setAttribute("class", "");
 
 }
 
@@ -65,24 +92,24 @@ const handleSelectChange = function(listId, character){
   houseLi.textContent = "House: " + character.house;
   const ancestryLi = document.querySelector('#ancestryLi');
   if(character.ancestry !== ""){
-  ancestryLi.textContent = "Ancestry: " + character.ancestry;}
-  else {
-   ancestryLi.textContent = "Ancestry: Unknown";
+    ancestryLi.textContent = "Ancestry: " + character.ancestry;}
+    else {
+      ancestryLi.textContent = "Ancestry: Unknown";
+    }
+    const patronusLi = document.querySelector('#patronusLi');
+    if(character.patronus !== ""){
+      patronusLi.textContent = "Patronus: " + character.patronus;
+    } else {
+      patronusLi.textContent = "Patronus: Unknown";
+    };
+
+
+    ul.appendChild(nameLi)
+    ul.appendChild(houseLi)
+    ul.appendChild(ancestryLi);
+    ul.appendChild(patronusLi);
+
   }
-  const patronusLi = document.querySelector('#patronusLi');
-  if(character.patronus !== ""){
-  patronusLi.textContent = "Patronus: " + character.patronus;
-} else {
-  patronusLi.textContent = "Patronus: Unknown";
-};
 
 
-  ul.appendChild(nameLi)
-  ul.appendChild(houseLi)
-  ul.appendChild(ancestryLi);
-  ul.appendChild(patronusLi);
-
-}
-
-
-window.addEventListener('load', app);
+  window.addEventListener('load', app);

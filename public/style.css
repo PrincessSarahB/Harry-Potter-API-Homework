@@ -64,7 +64,7 @@ body.Ravenclaw{
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-bottom: 10px;
   margin: 10px;
   font-weight: bold;
