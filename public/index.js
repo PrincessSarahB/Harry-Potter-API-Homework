@@ -90,24 +90,41 @@ const changeBackgroundColour = function(character){
   body.setAttribute("class", character.house);
 }
 
-const createInfoList = function(listId, character){
-  const ul = document.querySelector(listId);
+const createNameLi = function(character){
   const nameLi = document.querySelector('#nameLi');
   nameLi.textContent = "Name: " + character.name;
+}
+
+const createHouseLi = function(character){
   const houseLi = document.querySelector('#houseLi');
   houseLi.textContent = "House: " + character.house;
+}
+
+const createAncestryLi = function(character){
   const ancestryLi = document.querySelector('#ancestryLi');
   if(character.ancestry !== ""){
     ancestryLi.textContent = "Ancestry: " + character.ancestry;}
     else {
       ancestryLi.textContent = "Ancestry: Unknown";
     }
-    const patronusLi = document.querySelector('#patronusLi');
-    if(character.patronus !== ""){
-      patronusLi.textContent = "Patronus: " + character.patronus;
-    } else {
-      patronusLi.textContent = "Patronus: Unknown";
-    };
+}
+
+const createPatronusLi = function(character){
+  const patronusLi = document.querySelector('#patronusLi');
+  if(character.patronus !== ""){
+    patronusLi.textContent = "Patronus: " + character.patronus;
+  } else {
+    patronusLi.textContent = "Patronus: Unknown";
+  };
+}
+
+const createInfoList = function(listId, character){
+  const ul = document.querySelector(listId);
+  createNameLi(character);
+  createHouseLi(character);
+  createAncestryLi(character);
+  createPatronusLi(character);
+  
     ul.appendChild(nameLi)
     ul.appendChild(houseLi)
     ul.appendChild(ancestryLi);
